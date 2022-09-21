@@ -16,6 +16,8 @@ public class UserLinkedList {
         li.insertAtMiddle(31, 2);
          list.mergListLinked(li);
          list.print();
+         list.reverse();
+         list.print();
            
             
         }
@@ -96,10 +98,7 @@ class ListLinked<T>{
         
         node.next=list.head.next;
        
-        while(node!=null){
-            
-            node=node.next;
-        }
+     
 
     }
 
@@ -141,6 +140,19 @@ class ListLinked<T>{
             node=node.next;
         }
         node.next=node.next.next;
+    }
+
+    void reverse(){
+        int i=1;
+        Node start=head;
+        while(start.next!=null){
+            T data=deleteAtEnd();
+            insertAtMiddle(data, i);
+            start=start.next;
+            
+            i++;
+
+        }
     }
     
 }

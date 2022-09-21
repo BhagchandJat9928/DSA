@@ -5,6 +5,12 @@ public class DoublyList {
         li.insertAtLast(9);
         li.insertAtFront(7);
         li.insertAtMiddle(5, 2);
+        DoublyLinkedList<Integer> list=new DoublyLinkedList<>();
+        list.insertAtFront(11);
+        list.insertAtLast(18);
+        list.insertAtFront(17);
+        list.insertAtMiddle(15, 2);
+        li.merge(list);
         li.print();
     }
     
@@ -68,6 +74,16 @@ class DoublyLinkedList<T>{
         node.right=n.right;
         node.left=n;
         n.right=node;
+    }
+
+    void merge(DoublyLinkedList<T> li){
+         Node node=head;
+          while(node.right!=null){
+            node=node.right;
+          }
+
+          node.right=li.head.right;
+       
     }
 
     void print(){
