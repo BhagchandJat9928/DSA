@@ -1,5 +1,4 @@
 
-
 public class UserLinkedList {
     public static void main(String[] args) {
         ListLinked<Integer> list=new ListLinked<>();
@@ -54,6 +53,7 @@ class ListLinked<T>{
 
     void insertAtLast(T data){
         Node n=head;
+    
         while(n.next!=null){
              n=n.next;
         }
