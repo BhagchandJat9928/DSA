@@ -1,7 +1,7 @@
 public class ShortestPath {
     public static void main(String[] args) {
         int[] arr={3,2,4,4};
-        System.out.println("bnhlsoe");
+        System.out.println("b");
     }
 
     static void Kursgal(int node,TreeNode<Integer> root){

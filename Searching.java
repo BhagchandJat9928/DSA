@@ -1,39 +1,28 @@
 class Searching{
     public static void main(String[] args) {
-        int[] arr={4,6,8,9,11,54,76,90};
-        BinarySearch(arr, 76, 0, arr.length);
+        int[] arr={4,6,7,8,9,11,54,76,90};
+        System.out.println( LinearSearch(arr, 3));
+       
     }
 
-    static void LinearSearch(int[] arr,int key){
-        String result="UnSuccessful";
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]==key){
-                result="Successful";
-                break;
-            }
-           
-        }
-        System.out.println(result);
+    static String LinearSearch(int[] arr,int key){
+       int i=0;
+       while(i<arr.length && arr[i]!=key){
+        i++;
+       } 
+        
+       if(i<arr.length) return "Found";
+       else return "Not Found";
+
     }
 
-    static void BinarySearch(int[] arr,int key,int start,int end){
-        if(start!=end  ){
-        int mid=(start+end)/2; 
-
-       if(arr[mid]==key){
-           System.out.println("successful");
-       }else if( arr[mid]>key && arr[mid+1]>=key){
-        end=mid;
-        BinarySearch(arr, key, start, end);
-       }else if( arr[mid]<key && arr[mid-1]<=key){
-        start=mid+1;
-        BinarySearch(arr, key, start, end);
-       }else{
-        System.out.println("Unsuccessful");
-       }
-
-    }else{
-        System.out.println("Unsuccessful");
-    }
+    static String  BinarySearch(int[] arr,int key,int start,int end){
+        
+        int mid=(start+end)/2;
+        if(arr[mid]==key) return "Found";
+        if(start -end==0) return "Not Found";
+        if(arr[mid]>key) return BinarySearch(arr, key, start, mid-1);
+        else return BinarySearch(arr, key, mid+1, end);
+       
 }
 }

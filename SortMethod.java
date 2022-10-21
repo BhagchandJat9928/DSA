@@ -1,10 +1,12 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class SortMethod {
     public static void main(String[] args) {
         //here
-        int[] arr={34,12,45,7,5,6,23,90,1,4,5,};
-        QuickSort(arr, 0, 1, arr.length-1);
+        int[] arr={34,12,45,90,30};
+     QuickSort(arr, 0, 0, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -55,10 +57,30 @@ public class SortMethod {
     }
 
     static void QuickSort(int[] arr,int pivot,int start,int end){
+              int en=end;
+        while(start<arr.length && arr[start]<=arr[pivot]){
+            start++;
+        }
+        while(end>=0 && arr[end]>=arr[pivot]){
+            end--;
+        }
 
+        if(end>=0 && start>=end){
+            int temp=arr[end];
+            arr[end]=arr[pivot];
+            arr[pivot]=temp;
+            
+            QuickSort(arr, pivot, 1, end-1);
+            QuickSort(arr, end+1, end+2, en);
+        }
+        if(start<end) {
+            int temp=arr[end];
+            arr[end]=arr[start];
+            arr[start]=temp;
+            QuickSort(arr, pivot, start, end);
+        }
         
-        
-        while(start<arr.length && end>pivot && arr[pivot]>=arr[start] || arr[pivot]<=arr[end]  ){
+      /*   while(start<arr.length && end>pivot && arr[pivot]>=arr[start] || arr[pivot]<=arr[end]  ){
            
             if(arr[pivot]>arr[start]){
                 start++;
@@ -89,7 +111,32 @@ public class SortMethod {
             if(start!=arr.length-1 || end!=0){
                 QuickSort(arr, pivot, start, end);
             }
+        } */
+    }
+
+    static void MergeSort(int[] arr,int start,int end){
+       int middle=(start+end)/2;
+       
+
+    }
+
+    static int[] RadixSort(int[] arr){
+        ArrayList<Integer>[] list=new  ArrayList[arr.length];
+        for(int i=0;i<String.valueOf(arr[0]).length();i++){
+            for(int j=0;j<arr.length;j++){
+                int val=Integer.parseInt(String.valueOf(String.valueOf(arr[i]).charAt(i)));
+                System.out.print(arr[j]);
+                list[val].add(arr[j]);
+            }
+            int size=0;
+        for(int k=0;k<arr.length;k++){
+            
+            while(! list[k].isEmpty()){
+                     arr[size++]=list[k].remove(0);
+            }
         }
+        }
+        return arr;
     }
 }
 
