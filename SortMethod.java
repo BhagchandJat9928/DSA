@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+
+
 
 public class SortMethod {
     public static void main(String[] args) {
-        //here
-        int[] arr={34,12,45,90,30};
-     QuickSort(arr, 0, 0, arr.length-1);
+      
+
+        int[] arr={5 ,9 ,1, 10, 12, 4};
+    QuickSort(arr,0,1, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -57,67 +59,113 @@ public class SortMethod {
     }
 
     static void QuickSort(int[] arr,int pivot,int start,int end){
-              int en=end;
-        while(start<arr.length && arr[start]<=arr[pivot]){
-            start++;
+        if(end-pivot<=0  || pivot==end ){
+            return ;
         }
-        while(end>=0 && arr[end]>=arr[pivot]){
-            end--;
-        }
-
-        if(end>=0 && start>=end){
-            int temp=arr[end];
-            arr[end]=arr[pivot];
-            arr[pivot]=temp;
+         
+            while(start<end && arr[pivot]>arr[start]) start++;
             
-            QuickSort(arr, pivot, 1, end-1);
-            QuickSort(arr, end+1, end+2, en);
-        }
-        if(start<end) {
-            int temp=arr[end];
-            arr[end]=arr[start];
-            arr[start]=temp;
-            QuickSort(arr, pivot, start, end);
-        }
+
+             while(end>pivot && arr[pivot]<arr[end]) end--;
+             
+
+       if(start<end){
         
-      /*   while(start<arr.length && end>pivot && arr[pivot]>=arr[start] || arr[pivot]<=arr[end]  ){
+       swap(arr, start, end);
+      
+           QuickSort(arr,pivot, start, end);
            
-            if(arr[pivot]>arr[start]){
+       }
+
+
+       if(start>=end){
+      
+        swap(arr, pivot, end);
+       
+           QuickSort(arr, pivot,pivot+1, end-1);
+    
+           QuickSort(arr, end+1, end+2,arr.length-1);
+          
+
+       }
+
+       
+     
+    }
+/* 
+    static void QuickSort(int[] arr,int s ,int l,int r){
+        if(r-l<=0) return;
+        int start=l+1;
+        for(int next=start;next<r;next++){
+            if(arr[next]<=arr[l]){
+                swap(arr, start, next);
                 start++;
             }
-            if(arr[pivot]<arr[end]){
-                end--;
-            }
-            System.out.println(start+ " "+end+" "+pivot);
         }
-
-        if(start>=end && end>pivot){
-            int temp=arr[pivot];
-            arr[pivot]=arr[end];
-            arr[end]=temp; 
-            pivot=end; 
-            System.out.println(start+ " "+end+" "+pivot);
-            QuickSort(arr,0 , 1, pivot-1); 
-            QuickSort(arr,pivot+1 , pivot+2, end);
-        }else if(start>=end && end==pivot){
-            int temp=arr[pivot];
-            arr[pivot]=arr[start];
-            arr[start]=temp; 
-        }else if(start<end){
-            int temp=arr[start];
-            arr[start]=arr[end];
-            arr[end]=temp;
-            System.out.println(start+ " "+end+" "+pivot);
-            if(start!=arr.length-1 || end!=0){
-                QuickSort(arr, pivot, start, end);
-            }
-        } */
+        swap(arr, l, start-1);
+        QuickSort(arr, l, start);
+        QuickSort(arr, start+1, r);
     }
-
+ */
     static void MergeSort(int[] arr,int start,int end){
-       int middle=(start+end)/2;
+        if(end-start==1 && arr[start]>arr[end]){
+             swap(arr, start, end);
+            
+            }
+       
+        if(end-start>1){
+            int mid=(start+end)/2;
+           
+            MergeSort(arr, start, mid);
+            MergeSort(arr, mid+1, end);
+            merge(arr,start,Arrays.copyOfRange(arr, start, mid+1),Arrays.copyOfRange(arr,mid+1,end+1));
+            
+        }
        
 
+    }
+
+  static void  merge(int[] arr,int start,int[] startarr,int[] endarr){
+
+    int i=0;
+    int j=0;
+    int k=start;
+      while(i<startarr.length && endarr.length>j){
+        
+        if(startarr[i]>endarr[j]){
+            arr[k]=endarr[j];
+            j++;
+        }else {
+            arr[k]=startarr[i];
+            i++;
+        }
+        
+        k++;
+      }
+      
+
+      if(i<startarr.length){
+        while(i<startarr.length){
+            arr[k]=startarr[i];
+            i++;
+            k++;
+        }
+      }
+      if(j<endarr.length){
+        while(j<endarr.length){
+            arr[k]=endarr[j];
+            j++;
+            k++;
+        }
+      }
+
+   
+  }
+
+    static void swap(int[] arr ,int first,int second){
+         int temp=arr[first];
+         arr[first]=arr[second];
+         arr[second]=temp;
     }
 
     static int[] RadixSort(int[] arr){
