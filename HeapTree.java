@@ -1,13 +1,13 @@
 public class HeapTree {
     public static void main(String[] args) {
-        int[] arr={10,20,30}
+        int[] arr={10,20,30};
         MinHeapTree<Integer> min=new MinHeapTree<>(new Integer[3], arr[0]);
 
 
         //Find minimum three values 
       //  int[] ar={6,12,4,34,2,3,35};
         for(int i=1;i<arr.length;i++){
-            min.insert(ar[i]);
+            min.insert(arr[i]);
         }
        min.heapify(0);
      /*   while(min.size>0){
@@ -207,7 +207,7 @@ class MinHeapTree<T extends Comparable<T>> {
 
         void heapify(int position) {
             if ( leftChild(position)<=size && (heap[position].compareTo(heap[leftChild(position)]) < 0 ||
-            rightChild(position)<=size   heap[position].compareTo(heap[rightChild(position)]) < 0)) {
+            rightChild(position)<=size &&  heap[position].compareTo(heap[rightChild(position)]) < 0)) {
                 if (heap[rightChild(position)].compareTo(heap[leftChild(position)]) < 0) {
                     swap(leftChild(position), position);
                     heapify(leftChild(position));
