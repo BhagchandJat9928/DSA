@@ -1,27 +1,44 @@
+/* package codechef; // don't place package name! */
 
 import java.util.*;
 
-public class Codechef {
-    public static void main(String[] args) {
-        BufferReader br=new BufferReader(new InputStreamReader(System.in));
-	    long mod=(long)Math.pow(10,9)+7;
-		int test=Integer.parseInt(br.readLine());
+
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args)
+	{
+         	Scanner sc=new Scanner(System.in);
+		int test=sc.nextInt();
 		while(test-->0){
-		    int n=Integer.parseInt(br.readLine());
-		    int[] arr=br.readLine();
-		    long count=0;
+		    int n=sc.nextInt();
+		    int[] arr=new int[n];
+		    boolean inValid=false;
+		    Map<String,Integer> map=new HashMap<>();
+		    int j=1;
 		    for(int i=0;i<n;i++){
-		        for(int j=0;j<n;j++){
-		           int val=Integer.parseInt(arr[i])|Integer.parseInt(arr[j]);
-		           int newval=(Integer.parseInt(arr[i])^Integer.parseInt(arr[j])) +Integer.parseInt(arr[j]);
-                   if(val==newval) count++;
+		        arr[i]=sc.nextInt();
+				if(arr[i]>n){
+					inValid=true;
+				}
+		        if(map.get(String.valueOf(arr[i]))==null){
+		            map.put(String.valueOf(arr[i]),j);
+		            
+		              j++;
 		        }
-		        count%=mod;
 		        
 		    }
 		    
-		   System.out.println(count);
+		    if(inValid){
+		        System.out.println("-1");
+		    }else{
+		    for(int i=0;i<n;i++){
+		    System.out.print(map.get(String.valueOf(arr[i]))+" ");
+			}
+			System.out.println();
+		    }
+		  
 		}
-        }
-
-    }
+	}
+}
